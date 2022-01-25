@@ -18,10 +18,8 @@ const arrOfWinning = [
   [1, 5, 9],
   [7, 5, 3],
 ];
-
 let turn;
 let count = 0;
-
 for (let i = 0; i < lockers.length; i++) {
   lockers[i].onclick = function () {
     if (checkIfUsed(lockers[i])) {
@@ -41,7 +39,7 @@ for (let i = 0; i < lockers.length; i++) {
     checkIfWinner(turn);
   };
 }
-
+//FUNCTION CHECKIFWIN//
 function checkIfWinner(turn) {
   const crossOrCircle = turn == "rojo" ? ["circle", 1] : ["cross", 0];
   const arrLockers = Array.from(lockers);
