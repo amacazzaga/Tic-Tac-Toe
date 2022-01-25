@@ -20,25 +20,31 @@ const arrOfWinning = [
 ];
 let turn;
 let count = 0;
-for (let i = 0; i < lockers.length; i++) {
-  lockers[i].onclick = function () {
-    if (checkIfUsed(lockers[i])) {
-      return;
-    }
-    if (count % 2 == 0) {
-      turn = "verde";
-      turnoJugador.innerText = " de los verdes!";
-      lockers[i].getElementsByClassName("cross")[0].classList.remove("hidden");
-    } else {
-      turn = "rojo";
-      turnoJugador.innerText = " de los rojos!";
-      lockers[i].getElementsByClassName("circle")[0].classList.remove("hidden");
-    }
-    count += 1;
-
-    checkIfWinner(turn);
-  };
+function playerCrossOrCircle() {
+  for (let i = 0; i < lockers.length; i++) {
+    lockers[i].onclick = function () {
+      if (checkIfUsed(lockers[i])) {
+        return;
+      }
+      if (count % 2 == 0) {
+        turn = "verde";
+        turnoJugador.innerText = " de los verdes!";
+        lockers[i]
+          .getElementsByClassName("cross")[0]
+          .classList.remove("hidden");
+      } else {
+        turn = "rojo";
+        turnoJugador.innerText = " de los rojos!";
+        lockers[i]
+          .getElementsByClassName("circle")[0]
+          .classList.remove("hidden");
+      }
+      count += 1;
+      checkIfWinner(turn);
+    };
+  }
 }
+playerCrossOrCircle(lockers);
 //FUNCTION CHECKIFWIN//
 function checkIfWinner(turn) {
   const crossOrCircle = turn == "rojo" ? ["circle", 1] : ["cross", 0];
@@ -49,7 +55,6 @@ function checkIfWinner(turn) {
       crossOrCircle[0] + " hidden"
     );
   });
-
   const mapped = filtered.map((elem) => {
     return parseInt(elem.id.slice(7));
   });
